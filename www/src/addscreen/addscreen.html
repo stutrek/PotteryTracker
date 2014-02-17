@@ -1,0 +1,20 @@
+<div class="preview-image">
+	<h1>Adding Image</h1>
+	<img src="{{previewUrl}}" alt="" />
+</div>
+<div class="selector">
+	<h2>Select target item</h2>
+	<ul class="itemlist">
+		<li class="item">
+			<button data-target-item="new"><span>New<br/>Item</span></button>
+		</li>
+		{{#items}}
+			<li class="item">
+				<div class="image"><img src="{{images[0].src}}" alt="" data-target-item="{{id}}" /></div>
+			</li>
+		{{/items}}
+	</ul>
+</div>
+<div class="bottom buttons">
+	<button data-action="back">Cancel</button>
+</div>

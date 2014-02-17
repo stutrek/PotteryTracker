@@ -1,0 +1,35 @@
+.pt-addscreen button[data-target-item] {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 104px;
+	padding: 0;
+	margin: 0;
+}
+.pt-addscreen button[data-target-item] span {
+	display: inline-block;
+	line-height: 1.1;
+	vertical-align: middle;
+}
+.pt-addscreen .preview-image {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+} 
+.pt-addscreen .preview-image img {
+	display: block;
+	margin: 0 auto;
+	width: 75%;
+	border: 10px solid white;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+	-webkit-transform: rotate(-2deg);
+}
+.pt-addscreen .selector {
+	margin-top: 125px;
+	padding-top: 1px;
+	margin-bottom: 100px;
+	box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.4);
+	background-color: white;
+	position: relative;
+}

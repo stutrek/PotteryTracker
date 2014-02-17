@@ -27,6 +27,7 @@ body {
     background-color:white;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
+    line-height: 1.2;
     height:100%;
     margin:0;
     padding:0;
@@ -34,6 +35,15 @@ body {
 }
 .screen {
     display: none;
+}
+
+h1 {
+    margin: 0;
+    padding: 5px;
+}
+h2 {
+    margin: 0;
+    padding: 5px;
 }
 
 button {
@@ -48,6 +58,11 @@ button {
     text-transform: uppercase;
 }
 
+.bottom.buttons {
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid white;
+}
 .buttons {
     width: 100%;
     display: -webkit-flex;
@@ -87,6 +102,13 @@ button {
     margin-left: -50%;
     text-align: center;
     height: 100%;
+}
+.item .button {
+    display: block;
+    margin-left: -50%;
+    text-align: center;
+    height: 100%;
+    vertical-align: center;
 }
 .item img {
     height: 100%;

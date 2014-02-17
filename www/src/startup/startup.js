@@ -6,23 +6,19 @@ define(function(require, exports, module) {
 	var mainscreenCreate = require('src/mainscreen/mainscreen').create;
 	var itemscreenCreate = require('../itemscreen/itemscreen').create;
 	var errorscreenCreate = require('../errorscreen/errorscreen').create;
+	var addscreenCreate = require('../addscreen/addscreen').create;
 
 	var mainscreen = mainscreenCreate(document.getElementById('main'));
-	mainscreen.render();
-
 	var itemscreen = itemscreenCreate(document.getElementById('item'));
-
 	var errorscreen = errorscreenCreate( document.getElementById('error') );
+	var addscreen = addscreenCreate( document.getElementById('add') );
 
+	mainscreen.render();
 	screenmanager.add( 'main', mainscreen.container );
 	
-	screenmanager.add( 'error', errorscreen.container, function( error ) {
-		errorscreen.render( error );
-	});
-	
-	screenmanager.add( 'item', itemscreen.container, function( itemId ) {
-		itemscreen.render( itemId );
-	});
+	screenmanager.add( 'error', errorscreen.container, errorscreen.render.bind(errorscreen) );
+	screenmanager.add( 'item', itemscreen.container, itemscreen.render.bind(itemscreen) );
+	screenmanager.add( 'add', addscreen.container, addscreen.render.bind(addscreen) );
 
 	mainscreen.on('itemclick', function( item ) {
 		screenmanager.show( 'item', item.id );
@@ -33,27 +29,48 @@ define(function(require, exports, module) {
 		screenmanager.show('error', error);
 	});
 
-	function getPicture() {
+	function openCamera() {
 		navigator.camera.getPicture(function( imageData ) {
-			console.log(imageData);
+			screenmanager.show('add', imageData);
 		}, function( error ) {
 			if (error !== 'no image selected') {
 				screenmanager.show('error', new Error( error ) );
 			}
 		}, { 
-			quality : 50,
+			quality : 25,
 			allowEdit : true,
-			targetWidth: 768,
-			targetHeight: 768,
+			targetWidth: 1024,
+			targetHeight: 1024,
 			saveToPhotoAlbum: false,
-			destinationType: 0,
+			destinationType: 1,
+			sourceType: 1
+		});
+	}
+	function getPhoto() {
+		navigator.camera.getPicture(function( imageData ) {
+			screenmanager.show('add', imageData);
+		}, function( error ) {
+			if (error !== 'no image selected') {
+				screenmanager.show('error', new Error( error ) );
+			}
+		}, { 
+			quality : 25,
+			allowEdit : true,
+			targetWidth: 1024,
+			targetHeight: 1024,
+			saveToPhotoAlbum: false,
+			destinationType: 1,
 			sourceType: 0
 		});
 	}
 
 	var buttonActions = {
 		back: screenmanager.back,
-		camera: getPicture
+		camera: openCamera,
+		getphoto: getPhoto,
+		testphoto: function(){
+			screenmanager.show('add', "http://placekitten.com/1024/768");
+		}
 	};
 	var pictureSource;
 	var destinationType;
