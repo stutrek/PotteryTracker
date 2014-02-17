@@ -15,26 +15,43 @@ define(function( require, exports, module ) {
 
 		var trigger = paperboy.mixin(this);
 
-		this.element.addEventListener('click', function( event ) {
-			var itemId;
-			if (itemId = event.target.getAttribute('data-item-id')) {
-				trigger('itemclick', self.items.getItem(itemId) );
-			}
-		});
+		var viewModel = {
+			previewUrl: "",
+			items: []
+		};
 
 		this.view = new Ractive({
 			el: self.element,
 			template: template,
-			data: {
-				previewUrl: "",
-				items: []
-			}
+			data: viewModel
 		});
 		
 		dataservice.loadList().then(function( itemList ) {
 			self.view.set('items', itemList.items);
 			self.items = itemList;
+
+			self.element.addEventListener('click', function( event ) {
+				var itemId = event.target.getAttribute('data-target-item');
+
+				if (!itemId) {
+					throw new Error('ItemId is undefined');
+				}
+				var item;
+				if( itemId === 'new') {
+					item = itemList.addItem( {
+						images: [{src: self.view.data.previewUrl}]
+					});
+				} else {
+					item = itemList.getItem( itemId );
+					item.addImage( {src: self.view.data.previewUrl} );
+				}
+
+				trigger('itemadded', itemId);
+				
+			});
 		});
+
+
 	}
 
 	AddScreen.prototype.render = function( previewUrl ) {

@@ -29,6 +29,10 @@ define(function(require, exports, module) {
 		screenmanager.show('error', error);
 	});
 
+	addscreen.on( 'itemadded', function() {
+		screenmanager.main();
+	});
+
 	function openCamera() {
 		navigator.camera.getPicture(function( imageData ) {
 			screenmanager.show('add', imageData);

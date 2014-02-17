@@ -47,6 +47,16 @@ define(function( require, exports, module ) {
 				throw new Error('Tried to go back past the beginning');
 			}
 		};
+
+		this.main = function() {
+			if (stack.length > 1) {
+				stack.pop().hide();
+				stack[0].show();
+				stack.length = 1;
+			} else {
+				throw new Error('Tried to return to main from main');
+			}
+		};
 	}
 
 	function Screen( element, show, hide ) {

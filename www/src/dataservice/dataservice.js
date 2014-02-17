@@ -4,10 +4,24 @@ define(function( require, exports ) {
 
 	var trigger = paperboy.mixin( exports, ['error'] );
 
+	function Item( dto ) {
+		for( var key in dto ) {
+			if (dto.hasOwnProperty(key)) {
+				this[key] = dto[key];
+			}
+		}
+	}
+	Item.prototype.addImage = function( newImage ) {
+		this.images.unshift(newImage);
+	};
+	function createItem( dto ) {
+		return new Item( dto );
+	}
+
 	function ItemList( items ) {
 		
 		var self = this;
-		this.items = items;
+		this.items = items = items.map(createItem);
 
 		this.getItem = function getItem( key, val ) {
 			if (arguments.length === 1) {
@@ -22,8 +36,14 @@ define(function( require, exports ) {
 
 			throw new Error('Tried to retrieve list item with "'+key+'" of "'+val+'"');
 		};
-		this.getItems = function( key, val ) {
+		this.filterItems = function( key, val ) {
 			return items.filter(function(item) { return item[key] === val; });
+		};
+
+		this.addItem = function( dto ) {
+			var newItem = createItem( dto );
+			this.items.unshift( newItem );
+			return newItem;
 		};
 	}
 
