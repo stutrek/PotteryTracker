@@ -20,9 +20,9 @@
 .pt-addscreen .preview-image img {
 	display: block;
 	margin: 0 auto;
-	width: 75%;
+	width: 60%;
 	border: 10px solid white;
-	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 	-webkit-transform: rotate(-2deg);
 }
 .pt-addscreen .selector {

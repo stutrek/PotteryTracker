@@ -2,6 +2,9 @@
 	position: fixed;
 	bottom: 0;
 }
+.pt-mainlist .itemlist {
+	padding-bottom: 70px;
+}
 .pt-mainlist .new-photo {
 	background-color: black;
 	color: white;
