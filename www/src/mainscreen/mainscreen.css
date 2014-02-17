@@ -1,8 +1,7 @@
-.mainlist {
-
+.pt-mainlist .buttons {
+	position: fixed;
+	bottom: 0;
 }
-
-
 .pt-mainlist .new-photo {
 	background-color: black;
 	color: white;

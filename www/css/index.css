@@ -45,6 +45,21 @@ button {
     background-color: black;
     color: white;
     text-align: center;
+    text-transform: uppercase;
+}
+
+.buttons {
+    width: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+}
+.buttons button {
+    -webkit-flex: 1;
+    border-right: 1px solid white;
+}
+.buttons button:last-child {
+    border-right: none;
 }
 .itemlist {
     margin: 0;
