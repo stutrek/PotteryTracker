@@ -81,7 +81,7 @@ define(function(require, exports, module) {
 		camera: openCamera,
 		getphoto: getPhoto,
 		testphoto: function(){
-			screenmanager.show('add', 'http://placekitten.com/'+random(768, 1024)+'/'+random(768, 1024));
+			screenmanager.show('add', 'http://placekitten.com/'+random(384, 512)+'/'+random(384, 512)+'/');
 		}
 	};
 	var pictureSource;

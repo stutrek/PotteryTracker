@@ -24,14 +24,19 @@ define(function( require, exports ) {
 		
 		var self = this;
 		var trigger = paperboy.mixin(this);
-		this.items = items = items.map(function(rawItem) {
-			var item = createItem( rawItem );
+
+		function subscribeToItem( item ) {
 			item.on('change', function( item ) {
 				var index = self.items.indexOf(item);
 				self.items.splice(index, 1);
 				self.items.unshift( item );
 				trigger('change', item);
 			});
+		}
+
+		this.items = items = items.map(function(rawItem) {
+			var item = createItem( rawItem );
+			subscribeToItem( item );
 			return item;
 		});
 
@@ -56,6 +61,7 @@ define(function( require, exports ) {
 			dto.id = Math.random().toString();
 			var newItem = createItem( dto );
 			this.items.unshift( newItem );
+			subscribeToItem( newItem );
 			trigger('add');
 			return newItem;
 		};
@@ -64,7 +70,7 @@ define(function( require, exports ) {
 	//var itemCache = {};
 	var listPromise;
 
-	exports.loadList = function getList() {
+	exports.loadTestList = function getList() {
 		if (listPromise) {
 			return listPromise;
 		}
@@ -92,6 +98,24 @@ define(function( require, exports ) {
 
 			xhr.open("GET", "src/dataservice/testdata/data.json");
 			xhr.send();
+		});
+		listPromise.catch(trigger.bind(null, 'error'));
+
+		return listPromise;
+	};
+	exports.loadList = function() {
+		if (listPromise) {
+			return listPromise;
+		}
+		listPromise = new Promise(function( resolve /*, reject */ ) {
+			var items = JSON.parse(localStorage.getItem('items') || '[]');
+			var itemList = new ItemList(items);
+
+			itemList.on('*', function() {
+				localStorage.setItem('items', JSON.stringify(itemList.items));
+			});
+			resolve( itemList );
+		    
 		});
 		listPromise.catch(trigger.bind(null, 'error'));
 
