@@ -27,6 +27,9 @@ define(function( require, exports ) {
 		this.items = items = items.map(function(rawItem) {
 			var item = createItem( rawItem );
 			item.on('change', function( item ) {
+				var index = self.items.indexOf(item);
+				self.items.splice(index, 1);
+				self.items.unshift( item );
 				trigger('change', item);
 			});
 			return item;

@@ -34,7 +34,7 @@ define(function( require, exports, module ) {
 				var itemId = event.target.getAttribute('data-target-item');
 
 				if (!itemId) {
-					throw new Error('ItemId is undefined');
+					return;
 				}
 				var item;
 				if( itemId === 'new') {
@@ -50,7 +50,6 @@ define(function( require, exports, module ) {
 				
 			});
 		});
-
 
 	}
 
