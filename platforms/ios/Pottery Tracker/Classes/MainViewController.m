@@ -69,10 +69,6 @@
 // you can do so here.
 //Lower screen 20px on ios 7
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-    CGRect viewBounds = [self.webView bounds];
-    viewBounds.origin.y = 20;
-    viewBounds.size.height = viewBounds.size.height - 20;
-    self.webView.frame = viewBounds;
 }
 [super viewWillAppear:animated];
 }
@@ -80,6 +76,10 @@ if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    CGRect viewBounds = [self.webView bounds];
+    viewBounds.origin.y = 20;
+    viewBounds.size.height = viewBounds.size.height - 20;
+    self.webView.frame = viewBounds;
 }
 
 - (void)viewDidUnload
