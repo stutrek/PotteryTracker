@@ -1,0 +1,6 @@
+plugins
+www/bower_components
+platforms/ios/CordovaLib
+platforms/ios/cordova
+platforms/ios/www
+cordova.js
