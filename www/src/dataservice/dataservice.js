@@ -10,10 +10,12 @@ define(function( require, exports ) {
 				this[key] = dto[key];
 			}
 		}
+		var trigger = paperboy.mixin(this);
+		this.addImage = function( newImage ) {
+			this.images.unshift(newImage);
+			trigger('change', this);
+		};
 	}
-	Item.prototype.addImage = function( newImage ) {
-		this.images.unshift(newImage);
-	};
 	function createItem( dto ) {
 		return new Item( dto );
 	}
@@ -21,7 +23,14 @@ define(function( require, exports ) {
 	function ItemList( items ) {
 		
 		var self = this;
-		this.items = items = items.map(createItem);
+		var trigger = paperboy.mixin(this);
+		this.items = items = items.map(function(rawItem) {
+			var item = createItem( rawItem );
+			item.on('change', function( item ) {
+				trigger('change', item);
+			});
+			return item;
+		});
 
 		this.getItem = function getItem( key, val ) {
 			if (arguments.length === 1) {
@@ -41,8 +50,10 @@ define(function( require, exports ) {
 		};
 
 		this.addItem = function( dto ) {
+			dto.id = Math.random().toString();
 			var newItem = createItem( dto );
 			this.items.unshift( newItem );
+			trigger('add');
 			return newItem;
 		};
 	}

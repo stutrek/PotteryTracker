@@ -14,7 +14,11 @@ define(function(require, exports, module) {
 	var addscreen = addscreenCreate( document.getElementById('add') );
 
 	mainscreen.render();
-	screenmanager.add( 'main', mainscreen.container );
+	screenmanager.add( 'main', mainscreen.container, function() {
+		if (mainscreen.view) {
+			mainscreen.view.update('items');
+		}
+	});
 	
 	screenmanager.add( 'error', errorscreen.container, errorscreen.render.bind(errorscreen) );
 	screenmanager.add( 'item', itemscreen.container, itemscreen.render.bind(itemscreen) );
@@ -68,12 +72,16 @@ define(function(require, exports, module) {
 		});
 	}
 
+	function random( small, large ) {
+		return Math.floor((large-small) * Math.random()) + small;
+	}
+
 	var buttonActions = {
 		back: screenmanager.back,
 		camera: openCamera,
 		getphoto: getPhoto,
 		testphoto: function(){
-			screenmanager.show('add', "http://placekitten.com/1024/768");
+			screenmanager.show('add', 'http://placekitten.com/'+random(768, 1024)+'/'+random(768, 1024));
 		}
 	};
 	var pictureSource;
@@ -85,7 +93,7 @@ define(function(require, exports, module) {
 			var action = event.target.getAttribute('data-action');
 			if (buttonActions[action]) {
 				buttonActions[action]();
-			} else {
+			} else if (action) {
 				var error = new Error('Pressed an unknown button!');
 				screenmanager.show('error', error);
 				throw error;
