@@ -66,6 +66,7 @@ button {
 }
 .buttons button {
     display: block;
+    padding: 7px 2px;
     background-color: transparent;
     color: #007aff;
     text-align: center;
