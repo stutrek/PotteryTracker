@@ -18,6 +18,7 @@
  */
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -25,8 +26,8 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:white;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
+    font-family:'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size:17px;
     line-height: 1.2;
     height:100%;
     margin:0;
@@ -44,28 +45,57 @@ h1 {
     margin: 0;
     padding: 5px;
     text-rendering: optimizeLegibility;
+    font-weight: normal;
 }
 h2 {
     margin: 0;
     padding: 5px;
+    text-rendering: optimizeLegibility;
+    font-weight: normal;
 }
 
 button {
-    margin: 0;
-    padding: 20px 0;
-    display: block;
-    width: 100%;
-    border: 0;
-    background-color: black;
-    color: white;
+    margin: 5px;
+    padding: 5px 0;
+    background-color: transparent;
+    color: #007aff;
     text-align: center;
-    text-transform: uppercase;
+    font-size: 14px;
+    border: 1px solid #007aff;
+    border-radius: 5px;
+}
+.buttons button {
+    display: block;
+    background-color: transparent;
+    color: #007aff;
+    text-align: center;
+    font-size: 17px;
+    border: none;
+}
+.buttons button:last-child {
+    text-align: right;
+}
+.buttons button:first-child {
+    text-align: left;
+}
+
+button:active {
+    color: #f00;
 }
 
 .bottom.buttons {
     position: fixed;
     bottom: 0;
-    border-top: 1px solid white;
+    border-top: 1px solid #c4c4c4;
+    background-color: #f5f5f5;
+}
+.top.buttons {
+    border-bottom: 1px solid #c4c4c4;
+    background-color: #f5f5f5;
+}
+.top.fixed.buttons {
+    position: fixed;
+    top: 0;
 }
 .buttons {
     width: 100%;
@@ -75,10 +105,6 @@ button {
 }
 .buttons button {
     -webkit-flex: 1;
-    border-right: 1px solid white;
-}
-.buttons button:last-child {
-    border-right: none;
 }
 .itemlist {
     margin: 0;

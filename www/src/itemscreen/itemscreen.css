@@ -1,3 +1,26 @@
-.pt-itemscreen img {
-	max-width: 100%;
+.pt-itemscreen .images {
+	text-align: center;
+}
+.pt-itemscreen .images:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
+.pt-itemscreen .images img:first-child {
+	width: 90%;
+	max-width: none;
+	max-height: none;
+	border: 7px solid white;
+	float: none;
+}
+
+.pt-itemscreen .images img {
+	width: 144px;
+	max-height: 144px;
+	border: 5px solid white;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+	margin: 3px;
+	float: left;
 }

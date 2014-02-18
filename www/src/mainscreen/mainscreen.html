@@ -1,4 +1,4 @@
-<h1>Pottery Tracker</h1>
+<h1 class="pt-main-headline">Pottery Tracker</h1>
 <ul class="itemlist">
 	{{#items}}
 		<li data-item-id="{{id}}" class="item">
@@ -6,8 +6,14 @@
 		</li>
 	{{/items}}
 </ul>
+{{^items}}
+	<div class="welcome">
+		<h1>Welcome!</h1>
+		<p>Use the buttons at the bottom to add images and items.</p>
+	</div>
+{{/items}}
 <div class="bottom buttons">
-	<button data-action="camera">Open<br/>Camera</button>
-	<button data-action="getphoto">Add<br/>Existing Photo</button>
-	<button data-action="testphoto">Test Photo</button>
+	<button data-action="camera">Take Photo</button>
+	<button data-action="testphoto" style="display:none">T</button>
+	<button data-action="getphoto">Choose Existing</button>
 </div>

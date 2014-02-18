@@ -11,3 +11,9 @@
 	text-align: center;
 	padding: 50px 0;
 }
+.pt-mainlist .pt-main-headline {
+	color: #999;
+}
+.pt-mainlist .welcome p {
+	margin: 5px;
+}

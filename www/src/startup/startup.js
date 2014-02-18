@@ -47,8 +47,8 @@ define(function(require, exports, module) {
 		}, { 
 			quality : 25,
 			allowEdit : true,
-			targetWidth: 1024,
-			targetHeight: 1024,
+			targetWidth: 512,
+			targetHeight: 512,
 			saveToPhotoAlbum: false,
 			destinationType: 1,
 			sourceType: 1
@@ -64,8 +64,8 @@ define(function(require, exports, module) {
 		}, { 
 			quality : 25,
 			allowEdit : true,
-			targetWidth: 1024,
-			targetHeight: 1024,
+			targetWidth: 512,
+			targetHeight: 512,
 			saveToPhotoAlbum: false,
 			destinationType: 1,
 			sourceType: 0
